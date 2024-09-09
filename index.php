@@ -90,7 +90,7 @@ $_system            =
                         'ssl'          => extension_loaded('openssl') && version_compare(PHP_VERSION, '4.3.0', '>='),
                         'uploads'      => ini_get('file_uploads'),
                         'gzip'         => extension_loaded('zlib') && !ini_get('zlib.output_compression'),
-                        'stripslashes' => get_magic_quotes_gpc()
+                        'stripslashes' => true,
                     ];
 $_proxify           =
                     [
