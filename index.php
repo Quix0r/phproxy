@@ -21,8 +21,8 @@ error_reporting(0);
 // CONFIGURABLE OPTIONS
 //
 
-$_config            = array
-                    (
+$_config            =
+                    [
                         'url_var_name'             => '_proxurl',
                         'flags_var_name'           => '_proxfl',
                         'get_form_name'            => '_proxgfn',
@@ -31,10 +31,10 @@ $_config            = array
                         'max_file_size'            => -1,
                         'allow_hotlinking'         => 0,
                         'upon_hotlink'             => 1,
-                        'compress_output'          => 0
-                    );
-$_flags             = array
-                    (
+                        'compress_output'          => 0,
+                    ];
+$_flags             =
+                    [
                         'include_form'    => 0,
                         'remove_scripts'  => 1,
                         'accept_cookies'  => 1,
@@ -44,10 +44,10 @@ $_flags             = array
                         'base64_encode'   => 1,
                         'strip_meta'      => 0,
                         'strip_title'     => 1,
-                        'session_cookies' => 1
-                    );
-$_frozen_flags      = array
-                    (
+                        'session_cookies' => 1,
+                    ];
+$_frozen_flags      =
+                    [
                         'include_form'    => 0,
                         'remove_scripts'  => 0,
                         'accept_cookies'  => 0,
@@ -57,42 +57,48 @@ $_frozen_flags      = array
                         'base64_encode'   => 0,
                         'strip_meta'      => 0,
                         'strip_title'     => 0,
-                        'session_cookies' => 0
-                    );
-$_labels            = array
-                    (
-                        'include_form'    => array('Include Form', 'Include mini URL-form on every page'),
-                        'remove_scripts'  => array('Remove Scripts', 'Remove client-side scripting (i.e JavaScript)'),
-                        'accept_cookies'  => array('Accept Cookies', 'Allow cookies to be stored'),
-                        'show_images'     => array('Show Images', 'Show images on browsed pages'),
-                        'show_referer'    => array('Show Referer', 'Show actual referring Website'),
-                        'rotate13'        => array('Rotate13', 'Use ROT13 encoding on the address'),
-                        'base64_encode'   => array('Base64', 'Use base64 encoding on the address'),
-                        'strip_meta'      => array('Strip Meta', 'Strip meta information tags from pages'),
-                        'strip_title'     => array('Strip Title', 'Strip page title'),
-                        'session_cookies' => array('Session Cookies', 'Store cookies for this session only')
-                    );
+                        'session_cookies' => 0,
+                    ];
+$_labels            =
+                    [
+                        'include_form'    => ['Include Form', 'Include mini URL-form on every page'],
+                        'remove_scripts'  => ['Remove Scripts', 'Remove client-side scripting (i.e JavaScript)'],
+                        'accept_cookies'  => ['Accept Cookies', 'Allow cookies to be stored'],
+                        'show_images'     => ['Show Images', 'Show images on browsed pages'],
+                        'show_referer'    => ['Show Referer', 'Show actual referring Website'],
+                        'rotate13'        => ['Rotate13', 'Use ROT13 encoding on the address'],
+                        'base64_encode'   => ['Base64', 'Use base64 encoding on the address'],
+                        'strip_meta'      => ['Strip Meta', 'Strip meta information tags from pages'],
+                        'strip_title'     => ['Strip Title', 'Strip page title'],
+                        'session_cookies' => ['Session Cookies', 'Store cookies for this session only'],
+                    ];
 
-$_hosts             = array
-                    (
-                        '#^127\.|192\.168\.|10\.|172\.(1[6-9]|2[0-9]|3[01])\.|localhost#i'
-                    );
-$_hotlink_domains   = array();
-$_insert            = array();
+$_hosts             =
+                    [
+                        '#^127\.|192\.168\.|10\.|172\.(1[6-9]|2[0-9]|3[01])\.|localhost#i',
+                    ];
+$_hotlink_domains   = [];
+$_insert            = [];
 
 //
 // END CONFIGURABLE OPTIONS. The ride for you ends here. Close the file.
 //
 
 $_iflags            = '';
-$_system            = array
-                    (
+$_system            =
+                    [
                         'ssl'          => extension_loaded('openssl') && version_compare(PHP_VERSION, '4.3.0', '>='),
                         'uploads'      => ini_get('file_uploads'),
                         'gzip'         => extension_loaded('zlib') && !ini_get('zlib.output_compression'),
                         'stripslashes' => get_magic_quotes_gpc()
-                    );
-$_proxify           = array('text/html' => 1, 'application/xml+xhtml' => 1, 'application/xhtml+xml' => 1, 'text/css' => 1);
+                    ];
+$_proxify           =
+                    [
+                        'text/html'             => 1,
+                        'application/xml+xhtml' => 1,
+                        'application/xhtml+xml' => 1,
+                        'text/css'              => 1,
+                    ];
 $_version           = 'v1.1.1';
 $_http_host         = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : (isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : 'localhost');
 // https://stackoverflow.com/questions/4504831/serverhttp-host-contains-port-number-too
@@ -103,26 +109,26 @@ if ($pos) {
 $_script_url        = 'http' . ((isset($_ENV['HTTPS']) && $_ENV['HTTPS'] == 'on') || $_SERVER['SERVER_PORT'] == 443 ? 's' : '') . '://' . $_http_host . ($_SERVER['SERVER_PORT'] != 80 && $_SERVER['SERVER_PORT'] != 443 ? ':' . $_SERVER['SERVER_PORT'] : '') . $_SERVER['PHP_SELF'];
 $_script_base       = substr($_script_url, 0, strrpos($_script_url, '/')+1);
 $_url               = '';
-$_url_parts         = array();
-$_base              = array();
+$_url_parts         = [];
+$_base              = [];
 $_socket            = null;
 $_request_method    = $_SERVER['REQUEST_METHOD'];
 $_request_headers   = '';
 $_cookie            = '';
 $_post_body         = '';
-$_response_headers  = array();
-$_response_keys     = array();
+$_response_headers  = [];
+$_response_keys     = [];
 $_http_version      = '';
 $_response_code     = 0;
 $_content_type      = 'text/html';
 $_content_length    = false;
 $_content_disp      = '';
-$_set_cookie        = array();
+$_set_cookie        = [];
 $_retry             = false;
 $_quit              = false;
 $_basic_auth_header = '';
 $_basic_auth_realm  = '';
-$_auth_creds        = array();
+$_auth_creds        = [];
 $_response_body     = '';
 $pos = $_COOKIE['userAgent'];
 if(!isset($pos) || $pos == ""){ // empty means old method
@@ -236,7 +242,7 @@ else if (isset($_GET[$_config['url_var_name']]))
 }
 else
 {
-    show_report(array('which' => 'index', 'category' => 'entry_form'));
+    show_report(['which' => 'index', 'category' => 'entry_form']);
 }
 
 if (isset($_GET[$_config['url_var_name']], $_POST[$_config['basic_auth_var_name']], $_POST['username'], $_POST['password']))
@@ -265,14 +271,14 @@ if (url_parse($_url, $_url_parts))
         {
             if (preg_match($host, $_url_parts['host']))
             {
-                show_report(array('which' => 'index', 'category' => 'error', 'group' => 'url', 'type' => 'external', 'error' => 1));
+                show_report(['which' => 'index', 'category' => 'error', 'group' => 'url', 'type' => 'external', 'error' => 1]);
             }
         }
     }
 }
 else
 {
-    show_report(array('which' => 'index', 'category' => 'error', 'group' => 'url', 'type' => 'external', 'error' => 2));
+    show_report(['which' => 'index', 'category' => 'error', 'group' => 'url', 'type' => 'external', 'error' => 2]);
 }
 
 
@@ -313,7 +319,7 @@ if (!$_config['allow_hotlinking'] && isset($_SERVER['HTTP_REFERER']))
         switch ($_config['upon_hotlink'])
         {
             case 1:
-                show_report(array('which' => 'index', 'category' => 'error', 'group' => 'resource', 'type' => 'hotlinking'));
+                show_report(['which' => 'index', 'category' => 'error', 'group' => 'resource', 'type' => 'hotlinking']);
                 break;
             case 2:
                 header('HTTP/1.0 404 Not Found');
@@ -333,7 +339,7 @@ do
 {
    $context = stream_context_create();
    if ( $_bindip != 'default') {
-      $opts = array('socket' => array('bindto' => $_bindip));
+      $opts = ['socket' => ['bindto' => $_bindip]];
       $context = stream_context_create($opts);
    }
 
@@ -342,7 +348,7 @@ do
 
     if ($_socket === false)
     {
-        show_report(array('which' => 'index', 'category' => 'error', 'group' => 'url', 'type' => 'internal', 'error' => $err_no));
+        show_report(['which' => 'index', 'category' => 'error', 'group' => 'url', 'type' => 'internal', 'error' => $err_no]);
     }
 
     //
@@ -380,7 +386,7 @@ do
     if (!empty($_COOKIE))
     {
         $_cookie  = '';
-        $_auth_creds    = array();
+        $_auth_creds    = [];
 
         foreach ($_COOKIE as $cookie_id => $cookie_content)
         {
@@ -499,7 +505,7 @@ do
     // PROCESS RESPONSE HEADERS
     //
 
-    $_response_headers = $_response_keys = array();
+    $_response_headers = $_response_keys = [];
 
     $line = fgets($_socket, 8192);
 
@@ -612,7 +618,7 @@ do
         }
         else
         {
-            show_report(array('which' => 'index', 'category' => 'auth', 'realm' => $matches[1]));
+            show_report(['which' => 'index', 'category' => 'auth', 'realm' => $matches[1]]);
         }
     }
 }
@@ -633,7 +639,7 @@ if (!isset($_proxify[$_content_type]))
     {
         if ($_config['max_file_size'] != -1 && $_content_length > $_config['max_file_size'])
         {
-            show_report(array('which' => 'index', 'category' => 'error', 'group' => 'resource', 'type' => 'file_size'));
+            show_report(['which' => 'index', 'category' => 'error', 'group' => 'resource', 'type' => 'file_size']);
         }
 
         $_response_keys['content-length'] = 'Content-Length';
@@ -708,43 +714,43 @@ else
 
     $tags = array
     (
-        'a'          => array('href', 'data-inbound-url', 'data-href-url'),
-        'img'        => array('src', 'longdesc', 'srcset', 'data-src'),
-        'image'      => array('src', 'longdesc'),
-        'body'       => array('background'),
-        'base'       => array('href'),
-        'frame'      => array('src', 'longdesc'),
-        'iframe'     => array('src', 'longdesc'),
-        'head'       => array('profile'),
-        'layer'      => array('src'),
-        'input'      => array('src', 'usemap'),
-        'form'       => array('action'),
-        'area'       => array('href'),
-        'link'       => array('href', 'src', 'urn', 'integrity'),
-        'meta'       => array('content'),
-        'param'      => array('value'),
-        'applet'     => array('codebase', 'code', 'object', 'archive'),
-        'object'     => array('usermap', 'codebase', 'classid', 'archive', 'data'),
-        'script'     => array('src'),
-        'select'     => array('src'),
-        'hr'         => array('src'),
-        'table'      => array('background'),
-        'tr'         => array('background'),
-        'th'         => array('background'),
-        'td'         => array('background'),
-        'bgsound'    => array('src'),
-        'blockquote' => array('cite'),
-        'del'        => array('cite'),
-        'embed'      => array('src'),
-        'fig'        => array('src', 'imagemap'),
-        'ilayer'     => array('src'),
-        'ins'        => array('cite'),
-        'note'       => array('src'),
-        'overlay'    => array('src', 'imagemap'),
-        'q'          => array('cite'),
-        'ul'         => array('src'),
-        'use'        => array('xlink:href'),
-        'source'     => array('srcset')
+        'a'          => ['href', 'data-inbound-url', 'data-href-url'],
+        'img'        => ['src', 'longdesc', 'srcset', 'data-src'],
+        'image'      => ['src', 'longdesc'],
+        'body'       => ['background'],
+        'base'       => ['href'],
+        'frame'      => ['src', 'longdesc'],
+        'iframe'     => ['src', 'longdesc'],
+        'head'       => ['profile'],
+        'layer'      => ['src'],
+        'input'      => ['src', 'usemap'],
+        'form'       => ['action'],
+        'area'       => ['href'],
+        'link'       => ['href', 'src', 'urn', 'integrity'],
+        'meta'       => ['content'],
+        'param'      => ['value'],
+        'applet'     => ['codebase', 'code', 'object', 'archive'],
+        'object'     => ['usermap', 'codebase', 'classid', 'archive', 'data'],
+        'script'     => ['src'],
+        'select'     => ['src'],
+        'hr'         => ['src'],
+        'table'      => ['background'],
+        'tr'         => ['background'],
+        'th'         => ['background'],
+        'td'         => ['background'],
+        'bgsound'    => ['src'],
+        'blockquote' => ['cite'],
+        'del'        => ['cite'],
+        'embed'      => ['src'],
+        'fig'        => ['src', 'imagemap'],
+        'ilayer'     => ['src'],
+        'ins'        => ['cite'],
+        'note'       => ['src'],
+        'overlay'    => ['src', 'imagemap'],
+        'q'          => ['cite'],
+        'ul'         => ['src'],
+        'use'        => ['xlink:href'],
+        'source'     => ['srcset'],
     );
 
     preg_match_all('#(<\s*style[^>]*>)(.*?)(<\s*/\s*style[^>]*>)#is', $_response_body, $matches, PREG_SET_ORDER);
@@ -765,7 +771,7 @@ else
 
         $rebuild    = false;
         $extra_html = $temp = '';
-        $attrs      = array();
+        $attrs      = [];
 
         for ($j = 0, $count_j = count($m); $j < $count_j; $attrs[strtolower($m[$j][1])] = (isset($m[$j][4]) ? $m[$j][4] : (isset($m[$j][3]) ? $m[$j][3] : (isset($m[$j][2]) ? $m[$j][2] : false))), ++$j);
 
