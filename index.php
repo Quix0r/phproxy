@@ -144,7 +144,7 @@ if(!isset($pos) || $pos == ""){ // empty means old method
 $_bindip           = 'default';
 
 // Functions declaration
-require_once("./files/php/functions.inc.php");
+require_once "./files/php/functions.inc.php";
 
 //
 // SET FLAGS
@@ -282,7 +282,7 @@ else
 	$chars = str_split($_url_parts['host']);
 	foreach($chars as $char){
 		if(ord($char)>122){
-			require_once("./files/php/idna.class.php");
+			require_once "./files/php/idna.class.php";
 			$php_idna = new php_idna();
 			$_url_parts['host'] = $php_idna->encode($_url_parts['host']);
 			break;
@@ -1083,8 +1083,8 @@ else
         }
     }
 
-    include('./files/php/misc.php');
-    require_once("./files/php/misc.override.php");
+    include './files/php/misc.php';
+    require_once "./files/php/misc.override.php";
     if ($_flags['include_form'] && !isset($_GET['nf']))
     {
         $_url_form      = '<div style="width:100%;margin:0;text-align:center;border-bottom:1px solid #725554;color:#000000;background-color:#F2FDF3;font-size:12px;font-weight:bold;font-family:Bitstream Vera Sans,arial,sans-serif;padding:4px;">'
