@@ -659,7 +659,7 @@ $_flags             =
                         'block_3p'        => 0,
                         'strip_iframes'   => 0,
                         // original flags (positions preserved)
-                        'include_form'    => 1,
+                        'include_form'    => 0,
                         'remove_scripts'  => 1,
                         'accept_cookies'  => 1,
                         'show_images'     => 1,
